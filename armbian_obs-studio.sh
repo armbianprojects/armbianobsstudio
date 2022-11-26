@@ -6,6 +6,7 @@ echo ""
 
 echo ""
 echo "Prosess Install OBS Studio Dimulai, Mohon tunggu sampai Prosess selesai"
+echo ""
 
 echo ""
 echo "Memeriksa Ukuran Memory RAM"
