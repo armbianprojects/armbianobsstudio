@@ -1,25 +1,15 @@
 #!/bin/bash
 
 echo ""
-echo "Selamat Datang di Armbian Project"
-echo ""
-
-echo ""
-echo "Prosess Install OBS Studio Dimulai, Mohon tunggu sampai Prosess selesai"
-echo ""
-
-echo ""
-echo "Memeriksa Ukuran Memory RAM"
-echo ""
-
+echo "Checking memory size.........."
 Totalmem=$(cat /proc/meminfo|grep MemTotal|grep -o '[0-9]*')
 if (($Totalmem > 3500000)); then
     echo ""
-    echo "Memory RAM cukup, Jadi tidak perlu tambahan Virtual RAM ....."
+    echo "You have got enough memory. No need for a swap partition.........."
     echo ""
 else
     echo ""
-    echo "Membuat Partisi Virtual RAM ......"
+    echo "Creating swap partition.........."
     echo ""
     sudo dd if=/dev/zero of=/var/swap2 bs=1024 count=1000000
     sudo chmod 600 /var/swap2
@@ -124,7 +114,7 @@ cd ~/ffmpeg-libraries/FFmpeg \
   && sudo make install
 
 echo ""
-echo "Prosess Installing OBS.........."
+echo "Installing OBS.........."
 echo ""
 sudo apt-get update
 sudo apt-get -y install build-essential checkinstall cmake git libmbedtls-dev libasound2-dev libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libgl1-mesa-dev libjack-jackd2-dev libjansson-dev libluajit-5.1-dev libpulse-dev libqt5x11extras5-dev libspeexdsp-dev libswresample-dev libswscale-dev libudev-dev libv4l-dev libvlc-dev libx11-dev libx11-xcb1 libx11-xcb-dev libxcb-xinput0 libxcb-xinput-dev libxcb-randr0 libxcb-randr0-dev libxcb-xfixes0 libxcb-xfixes0-dev libx264-dev libxcb-shm0-dev libxcb-xinerama0-dev libxcomposite-dev libxinerama-dev pkg-config python3-dev qtbase5-dev libqt5svg5-dev swig
@@ -138,13 +128,6 @@ sudo mkdir build && cd build
 sudo cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..
 sudo make -j4
 sudo make install
-
 echo ""
-echo "Prosess Install OBS Selesai.........."
-echo ""
-
-echo ""
-echo "Terimakasih sudah berkunjung, dan silahkan kunjungi armbianprojects.blogspot.com"
-echo ""
-
+echo "All done.........."
 exit 0
